@@ -34,3 +34,7 @@ class Comment(models.Model):
         ordering = ["-created_on"]
     def __str__(self):
         return f"{self.body} | written by {self.author}"
+
+def profile_page(request):
+    user = get_object_or_404(User, user=request.user)
+    comments = user.commenter.all()
